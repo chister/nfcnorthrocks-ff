@@ -1,0 +1,85 @@
+<!--script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost:8080');
+    //var socket = io.connect('http://chiminytweet.jit.su/');
+        socket.on('newtweet', function (data) {
+            var html = $('#tweets').html();
+            html = '<tr>' +
+                        '<td valign="bottom">' +
+                            '<img src="' + data.image_url + '"></img>' +
+                        '</td>' +
+                        '<td valign="center"><strong>' + data.screen_name + ': '
+                    + data.name + '</strong>' +
+                        data.text + '</td>' +
+                   '</tr>' + html;
+            $('#tweets').html(html); 
+        });
+</script>
+<table border="1">
+    Hello <br>
+    <div id="tweets"></div>
+
+</table-->
+<html lang="en">
+<head>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="impress" class="impress-not-supported">
+        <div class="step slide" data-x="-2000" data-y="-1500">
+            <h3>Welcome to NFCNorthRocks!!! Hit your left/right arrow keys to
+                see who has actually responded to the Commissioner's annoying
+                emails</h3>
+            <br><br>
+            <center>
+            <img src="images/nfcnorthrocks.jpeg"><br>
+            </center>
+        </div>
+        <div class="step slide" data-x="-1000" data-y="-1500">
+            <img src="images/andy.jpeg"><br>
+            <h3>(From Andy the asshole) you are the spinich that connects to pieces of rancid dong hanging from
+                a bloody donko...</h3>
+            <br><br>
+        </div>
+        <div class="step slide" data-x="0" data-y="-1500" data-z="-100"
+                data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+            <span class="have">
+            <img src="images/eme.jpeg"><br>
+            </span>
+            <span class="you">
+                <h3>(From Eme the scientist) yes, i will be….</h3>
+            </span>
+            <span class="noticed">
+                <h3>I'm still in dang ole denton tx… hope you and the family are well… enjoy
+                cali… it's 102F here today… wtf
+
+                eme</h3>
+            </span>
+        </div>
+        <div class="step slide" data-x="1000" data-y="-1500">
+            <img src="images/gene.jpeg"><br>
+            <h3>(From Gene lean mean dancing machine) Gene
+                Hey mike I'm in</h3><br>
+            <br><br>
+        </div>
+        <div id="one-more-thing" class="step" data-x="6000" data-y="4000"
+                data-scale="2">
+            <img src="images/chi.jpeg"><br>
+            <h3>(From Chi Tai) Do I have to upload a picture?</h3>
+            <br><br>
+        </div>
+        <div id="its-in-3d" class="step" data-x="7200" data-y="6800"
+                data-rotate-x="-40" data-rotate-y="10" data-scale="4">
+            <video controls="controls">
+                <source src="images/peter.m4v" type="video/mp4" />
+            </video><br>
+            <h3>(From Peter the Tramp) Peter says: i'm in.
+                2 hours ago</h3>
+            <br><br>
+        </div>
+    </div>
+
+    <script src="js/impress.js"></script>
+</body>
+</html>

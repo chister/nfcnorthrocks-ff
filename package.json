@@ -1,0 +1,26 @@
+{
+  "name": "nodeapps-socket.io",
+  "author": {
+    "name": "Nodejitsu Inc.",
+    "email": "support@nodejitsu.com"
+  },
+  "scripts": {
+    "start": "./bin/server"
+  },
+  "version": "0.1.0-21",
+  "dependencies": {
+    "socket.io": "v0.8.x",
+    "express": "v2.5.x",
+    "ntwitter": "0.4.0"
+  },
+  "analyze": false,
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "dist": {
+    "shasum": "79b27f49176eb4222f651c7f0c745a45569eb62f"
+  },
+  "subdomain": "chiminytweet"
+}

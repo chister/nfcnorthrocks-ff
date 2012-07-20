@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+var express = require("express"),
+    app = express.createServer(),
+    twitter = require('ntwitter'),
+    io = require('socket.io').listen(app); // socket.io may listen to an http
+                                           // or express server
+
+// Use Express to serve static content, such as our index.html
+app.configure(function(){
+  app.use(express.static(__dirname + '/../public'));
+});
+var clients = [];
+
+io.sockets.on('connection', function(socket) {
+    clients.push(socket);
+    twit.stream('statuses/filter', {'follow': '14256369,16402798', 'track': 'nfl,vikings'}, function(stream) {
+        stream.on('data', function(data) {
+            for (var i=0; i<clients.length; i++) {
+                var twit_data = { 
+                    name: data.user.name,
+                    screen_name: data.user.screen_name,
+                    text: data.text,
+                    image_url: data.user.profile_image_url_https
+                };  
+                clients[i].emit('newtweet', twit_data);
+            }   
+        }); 
+    }); 
+
+    socket.on('disconnect', function() {
+        console.log('#################### Disconnection');
+        delete clients[this]; 
+    }); 
+});
+
+var twit = new twitter({
+    consumer_key: '5SzBF5AM1TaIeWXMXSo8zw',
+    consumer_secret: 'fuMTAEtZj6W1OH15qNmdIFmpAAh9CUruIVxW660HmQ',
+    access_token_key: '14256369-Sv5FHU4Sl2FU4Ag0yY1wZJIgPW3dPmG2eYOWFZaPr',
+    access_token_secret: '8gKXJvRRtdTrt5uTsdDf8KYjAD3A3QHaZIw8Tg1og'
+    });
+
+app.listen(8080);
+
+console.log('socket.io server started on port 8080');
